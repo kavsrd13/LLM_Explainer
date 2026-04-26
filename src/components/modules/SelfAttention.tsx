@@ -59,25 +59,25 @@ export const SelfAttention: React.FC = () => {
                </marker>
              </defs>
              {tokens.map((_, i) => {
-                const step = 80 / (tokens.length - 1);
-                const startX = 10 + (selectedIdx * step);
+                const step = 100 / (tokens.length);
+                const startX = (selectedIdx !== null ? selectedIdx * step + step/2 : 0);
                 const scores = getAttentionScores(selectedIdx);
                 const scoreObj = scores.find(s => s.targetIndex === i);
                 
                 if (!scoreObj) return null;
-                const endX = 10 + (scoreObj.targetIndex * step);
+                const endX = (scoreObj.targetIndex * step + step/2);
                 
                 return (
                   <motion.path
                     key={`line-${selectedIdx}-${scoreObj.targetIndex}`}
-                    d={`M ${startX}% 30% C ${startX}% 5%, ${endX}% 5%, ${endX}% 25%`}
+                    d={`M ${startX}% 35% C ${startX}% 15%, ${endX}% 15%, ${endX}% 30%`}
                     stroke="rgba(234, 179, 8, 0.4)"
-                    strokeWidth={scoreObj.score * 15}
+                    strokeWidth={scoreObj.score * 20}
                     fill="transparent"
                     markerEnd="url(#arrowhead)"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                   />
                 );
              })}
