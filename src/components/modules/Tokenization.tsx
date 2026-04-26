@@ -158,11 +158,11 @@ export const Tokenization: React.FC = () => {
       </div>
 
       <ReadingMaterial 
-        simple="AI models can't actually 'read' text the way humans do. Imagine you have a loaf of bread—you have to slice it into pieces before you eat it. Tokenization is the process of slicing human sentences into tiny, bite-sized pieces that the AI's digital brain can handle."
-        analogy="Think of it like Scrabble tiles. Instead of looking at a whole word like 'UNBELIEVABLE', the AI might see 'UN', 'BELIEVE', and 'ABLE'."
-        technical="Tokenization is the prep-step where characters are grouped into meaningful strings. Most modern models use 'Subword' tokenization, which helps the model understand new or complex words by looking at their internal structure (like prefixes and suffixes)."
-        example="'Learning is fun!' → 'Learn', '##ing', 'is', 'fun', '!'"
-        takeaway="By breaking words down, AI can understand millions of word combinations using just a small list of 'parts'."
+        simple="AI models can't actually 'read' sentences like we do. Imagine you have a long piece of thread—you have to snip it into smaller bits to use it for stitching. Tokenization is the process of 'snipping' your sentences into tiny, manageable pieces called tokens."
+        analogy="Think of it like Scrabble tiles. Instead of seeing the whole word 'UNFORGETTABLE', the AI might see them as three tiles: 'UN', 'FORGET', and 'TABLE'."
+        technical="Tokenization is the preprocessing step where raw text is segmented into subword units. This allows the model to handle rare words better by understanding their roots and suffixes separately."
+        example="'Learning AI' → 'Learn', '##ing', 'AI'"
+        takeaway="By breaking words down into parts, AI can understand millions of words using just a small internal 'vocabulary' of parts."
       />
     </div>
   );

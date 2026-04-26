@@ -58,17 +58,21 @@ export const SelfAttention: React.FC = () => {
                  <polygon points="0 0, 10 3.5, 0 7" fill="rgba(234, 179, 8, 0.6)" />
                </marker>
              </defs>
-             {selectedIdx !== null && getAttentionScores(selectedIdx).map((s, i) => {
-                const step = 100 / (tokens.length - 1);
+             {tokens.map((_, i) => {
+                const step = 80 / (tokens.length - 1);
                 const startX = 10 + (selectedIdx * step);
-                const endX = 10 + (s.targetIndex * step);
+                const scores = getAttentionScores(selectedIdx);
+                const scoreObj = scores.find(s => s.targetIndex === i);
+                
+                if (!scoreObj) return null;
+                const endX = 10 + (scoreObj.targetIndex * step);
                 
                 return (
                   <motion.path
-                    key={`line-${selectedIdx}-${s.targetIndex}`}
-                    d={`M ${startX}% 30% C ${startX}% 10%, ${endX}% 10%, ${endX}% 25%`}
+                    key={`line-${selectedIdx}-${scoreObj.targetIndex}`}
+                    d={`M ${startX}% 30% C ${startX}% 5%, ${endX}% 5%, ${endX}% 25%`}
                     stroke="rgba(234, 179, 8, 0.4)"
-                    strokeWidth={s.score * 12}
+                    strokeWidth={scoreObj.score * 15}
                     fill="transparent"
                     markerEnd="url(#arrowhead)"
                     initial={{ pathLength: 0, opacity: 0 }}
